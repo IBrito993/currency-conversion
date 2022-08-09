@@ -44,7 +44,7 @@ public class CurrencyConversionController {
     public ResponseEntity<CurrencyConversion> retrieveValueFeign(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
 
         var response = currencyExchangeProxy.retrieveValue(from, to);
-        response.getBody().setEnvironment(port);
+
         response.getBody().setQuantity(quantity);
         response.getBody().setTotalCalculatedAmount(quantity.multiply(response.getBody().getConversionMultiple()));
 
